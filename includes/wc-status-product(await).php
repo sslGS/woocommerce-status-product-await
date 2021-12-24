@@ -41,7 +41,7 @@ function check_purchasable_product($is_purchasable, $product) {
 	return $is_purchasable;
 }
 
-add_action( 'woocommerce_single_product_summary', 'unavailable_product_display_message', 20 );
+add_action( 'woocommerce_single_product_summary', 'unavailable_product_display_message', 30 );
 function unavailable_product_display_message() {
     global $product;
     $order_id = $product->get_id();
