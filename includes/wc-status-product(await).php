@@ -9,13 +9,23 @@ function filter_woocommerce_product_stock_status_options( $status ) {
     return $status;
 }
 
+add_filter('woocommerce_is_purchasable', 'filter_is_purchasable_callback', 10, 2 );
+add_filter('woocommerce_variation_is_purchasable', 'filter_is_purchasable_callback', 10, 2 );
+function filter_is_purchasable_callback( $purchasable, $product ) {
+    if ( $product->get_stock_status() === 'await' ) {
+        return false;
+    }
+
+    return $purchasable;
+}
+
 add_filter( 'woocommerce_get_availability_text', 'filter_woocommerce_get_availability_text', 10, 2 );
 function filter_woocommerce_get_availability_text( $availability, $product ) {
     $order_id = $product->get_id();
     switch( $product->get_stock_status() ) {
         case 'await':
             $text = get_post_meta ( $order_id, "_await_text", true);
-            $availability = "Ожидается: {$text}";
+            $availability = "<p class='stock out-of-stock'>Ожидается: {$text}</p>";
         break;
     }
 
