@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WooCommerce Status Product(await)
  * Description: Плагин для кастомизации статуса наличия товара под все-пестициды.
- * Version: 1.0.1release1
+ * Version: 1.1.5release1
  * Author: Yaroslav Burashnykov
  * @package     WC-Status-Product
  * @author      Yaroslav Burashnykov
