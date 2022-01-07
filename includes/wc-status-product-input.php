@@ -2,9 +2,10 @@
 
 if(!defined('ABSPATH')) exit;
 
+$id = get_post();
+
 add_action( 'woocommerce_product_options_stock_status', 'input_await_text' );
 function input_await_text() {
-    $id = get_the_ID();
     woocommerce_wp_text_input( array(
         'id'          => '_await_text',
 		'value'       => get_post_meta( $id, '_await_text', true ),
