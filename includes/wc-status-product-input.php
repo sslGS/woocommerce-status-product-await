@@ -2,13 +2,13 @@
 
 if(!defined('ABSPATH')) exit;
 
-$id = get_post();
+$post = get_post();
 
 add_action( 'woocommerce_product_options_stock_status', 'input_await_text' );
 function input_await_text() {
     woocommerce_wp_text_input( array(
         'id'          => '_await_text',
-		'value'       => get_post_meta( $id, '_await_text', true ),
+		'value'       => get_post_meta($post->ID, '_await_text', true ),
 		'label'       => 'Текст',
 		'desc_tip'    => true,
 		'description' => 'Текст для статуса "Ожидается"',

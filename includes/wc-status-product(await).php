@@ -2,7 +2,7 @@
 
 if(!defined('ABSPATH')) exit;
 
-$order_id = get_post();
+$post = get_post();
 
 add_filter( 'woocommerce_get_availability_class', 'filter_woocommerce_get_availability_class', 10, 2 );
 function filter_woocommerce_get_availability_class($class, $product) {
@@ -26,7 +26,7 @@ add_filter('woocommerce_admin_stock_html', 'filter_woocommerce_admin_stock_html'
 function filter_woocommerce_admin_stock_html($stock_html, $product) {
     switch($product->get_stock_status()) {
         case 'await':
-            $text = get_post_meta ($order_id, "_await_text", true);
+            $text = get_post_meta ($post->ID, "_await_text", true);
             $stock_html = "<mark class='outofstock'>Ожидается: {$text}</mark>"; 
         break;
     }   
@@ -46,7 +46,7 @@ add_action( 'woocommerce_single_product_summary', 'unavailable_product_display_m
 function unavailable_product_display_message() {
     switch( $product->get_stock_status() ) {
         case 'await':
-            $text = get_post_meta ($order_id, "_await_text", true);
+            $text = get_post_meta ($post->ID, "_await_text", true);
             $availability = "<p class='stock out-of-stock'>Ожидается: {$text}</p>";
             echo $availability;
         break;
